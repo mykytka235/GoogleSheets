@@ -1,0 +1,6 @@
+server:
+  port: 8080
+---
+google.sheets:
+  creds: credentials.json
+  appname: Google-Sheets/0.1
