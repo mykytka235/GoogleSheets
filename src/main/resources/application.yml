@@ -1,7 +1,6 @@
 server:
   port: 8080
-googlesheets:
-  appname: Google Sheets API Java Quickstart
+---
+google.sheets:
   creds: credentials.json
-  spreadsheet:
-    id: 166uPldN82H4xz0LOJjlvAoFtjFqPQPvSRZoZCCzT8J4
+  appname: Google-Sheets/0.1

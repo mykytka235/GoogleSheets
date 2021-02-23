@@ -4,7 +4,7 @@ import com.skankhunt220.api.dto.UserDto;
 import com.skankhunt220.entity.User;
 
 public class UserTransformer {
-    public static UserDto transformIntoUserDto(User user) {
+    public static UserDto transform(User user) {
         return UserDto.builder()
                 .id(user.getId())
                 .firstName(user.getFirstName())
@@ -12,7 +12,7 @@ public class UserTransformer {
                 .lastName(user.getLastName())
                 .build();
     }
-    public static User transformIntoUser(UserDto dto) {
+    public static User transform(UserDto dto) {
         return User.builder()
                 .id(dto.getId())
                 .firstName(dto.getFirstName())

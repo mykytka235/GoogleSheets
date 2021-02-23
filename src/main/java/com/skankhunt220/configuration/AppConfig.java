@@ -5,8 +5,11 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
-import lombok.RequiredArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,10 +19,11 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-@RequiredArgsConstructor
+@ConfigurationProperties(prefix = "google.sheets")
 public class AppConfig {
-    @Value("${googlesheets.creds}")
-    private String CREDENTIALS_FILE_PATH;
+    private @Setter @Getter String creds;
+    private @Setter @Getter String appname;
+
     private static final List<String> SCOPES = Arrays.asList(SheetsScopes.SPREADSHEETS);
 
     @Bean
@@ -28,8 +32,8 @@ public class AppConfig {
                 JacksonFactory.getDefaultInstance(),
                 GoogleCredential.fromStream(Thread.currentThread()
                                                 .getContextClassLoader()
-                                                .getResourceAsStream(CREDENTIALS_FILE_PATH)
+                                                .getResourceAsStream(creds)
                                             ).createScoped(SCOPES)
-                                ).setApplicationName("Google-Sheets/0.1").build();
+                                ).setApplicationName(appname).build();
     }
 }
